@@ -1,7 +1,7 @@
 Rapid Server
 ============
 
-A very high performance web server based on .NET sockets and async I/O comparable to Node.js + Express.
+A very high performance web server utilizing .NET sockets and async I/O comparable to Node.js + Express.
 
 Based on research and concepts from my [[dotnetsockets]](https://github.com/perrybutler/dotnetsockets) project, this is the next evolution of it.
 
