@@ -14,8 +14,9 @@ Features
 Current working features include:
 
 * Evented, async I/O similar to Node.js (libuv) for high performance and concurrency.
-* Decent error handling and low failure rates (zero so far!) during high congestion/concurrency.
-* Output caching - caches popular resources and serves them up from an in-memory cache, greatly reducing number of I/O calls.
+* Uses kernel-level I/O completion ports for async callback completions, and managed threadpool threads for async processing.
+* Decent error handling and low failure rates (zero so far) during high congestion/concurrency.
+* Output caching - frequently used resources are stored and served from an in-memory cache, greatly reducing number of I/O calls.
 * Server is configurable with an XML file similar to Apache. Allows plain-text configuration of MimeTypes, DefaultDocuments, Keep-Alive (max requests/timeout), Custom Handlers aka Interops (PHP, etc), Compression (gzip/deflate), Response Headers, Virtual Hosts, etc.
 
 Roadmap
@@ -23,6 +24,7 @@ Roadmap
 Future milestones include:
 
 * Implement more of the official HTTP spec - headers, mimetypes, etc.
+* Replace IAsyncResult with SocketAsyncEventArgs to prevent high volume object allocations and improve async performance.
 * Virtual hosts and directory security.
 * Certificates, signing and encryption (SSL/HTTPS).
 * PHP handler via CGI and FastCGI.
