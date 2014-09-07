@@ -28,7 +28,7 @@ Future milestones include:
 * Virtual hosts and directory/file security.
 * Certificates, signing and encryption (SSL/HTTPS).
 * PHP handler via CGI and FastCGI.
-* Modularize the components, making them optional - build a server with only the stuff you need.
+* Modularize the components, making them optional - build a light-weight server with only the stuff you need.
 * Re-implement the Binary RPC server type. Should work similar to Apache Thrift (Facebook), Protobuf (Google) or Cap'n Proto.
 * Implement new server types - chat server, game server, etc. Also implement their client classes.
 * Improved error handling, logging and reporting.
