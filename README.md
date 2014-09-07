@@ -13,7 +13,7 @@ Features
 --------
 Current working features include:
 
-* Event-based, async I/O similar to Node.js (libuv) and IIS 7.5 for high performance and concurrency.
+* Event-driven, async I/O similar to Node.js (libuv) and IIS 7.5 for high performance and concurrency.
 * Uses kernel-level I/O completion ports for async callback completions, and managed threadpool threads for async processing.
 * Decent error handling and low failure rates (zero so far) during high congestion/concurrency.
 * Output caching - frequently used resources are stored and served from an in-memory cache, greatly reducing number of I/O calls.
