@@ -25,6 +25,7 @@ Future milestones include:
 
 * Implement more of the official HTTP spec - more headers, mimetypes, etc.
 * Replace IAsyncResult with SocketAsyncEventArgs to prevent high volume object allocations and improve async performance.
+* Implement an HTTP request cache similar to the output cache. This would basically avoid having to parse the request string into an HTTP request object and avoid the need to create the HTTP response object for every request that hits the server, when those requests have already been served before.
 * Virtual hosts and directory/file security.
 * Certificates, signing and encryption (SSL/HTTPS).
 * PHP handler via CGI and FastCGI.
