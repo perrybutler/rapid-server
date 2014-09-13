@@ -61,4 +61,4 @@ Future milestones include:
 
 History
 -------
-Based on research and concepts from my [dotnetsockets](https://github.com/perrybutler/dotnetsockets) project, this is the next evolution of it.
+Based on research and concepts from my [.NET Sockets](https://github.com/perrybutler/dotnetsockets) project, this is the next evolution of it.
