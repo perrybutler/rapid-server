@@ -19,6 +19,27 @@ Current working features include:
 * Output caching - frequently used resources are stored and served from an in-memory cache, greatly reducing number of I/O calls.
 * Server is configurable with an XML file, allowing plain-text configuration of mimetypes, default documents, keep-alive (max requests/timeout), custom handlers aka interops (php, etc), compression (gzip/deflate), response headers, virtual hosts, etc.
 
+Quick Start
+-----------
+The following code will create a standard HTTP server that is ready to serve static files from a directory:
+
+    Dim WithEvents server as Rapid.Http.Server("c:\myweb1")
+    server.StartServer("127.0.0.1", 9999)
+
+By overriding the HandleRequest event we can build a custom HTTP server:
+
+    Private Sub server_HandleRequest(ByVal req As Rapid.Http.Request, ByVal res As Rapid.Http.Response, ByVal client As System.Net.Sockets.SocketAsyncEventArgs) Handles server.HandleRequest
+      ' custom handling goes here e.g:
+      If req.MimeType = "x-my-custom-mime-type" Then
+        ' if our custom mime type is detected, modify the response
+        res.StatusCode = 404
+      End If
+    End Sub
+
+Or perhaps we want to allow our custom MimeType to be served as a static file with gzip compression. To do that we simply add the MimeType to the server config file:
+
+    <MimeType FileExtension="myc" Compress="gzip" Expires="access plus 1 year">x-my-custom-mime-type</MimeType>
+
 Roadmap
 -------
 Future milestones include:
