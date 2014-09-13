@@ -5,7 +5,7 @@ Rapid Server
 
 A very high performance web server utilizing .NET sockets and async I/O comparable to Node.js + Express and IIS 7.5.
 
-Currently outperforms Node.js in Windows 7 and competes with IIS 7.5. Handles the maximum concurrency allowed by ApacheBench (ab -n 100000 -c 20000) without any failures. Destroys the [C10K problem](http://en.wikipedia.org/wiki/C10k_problem). Handles concurrent (keep-alive) connections up to the maximum port limit imposed by the Windows OS and TCP/IP stack (usually around 64K after subtracting ports used/reserved by the OS).
+Currently outperforms Node.js in Windows 7 and competes with IIS 7.5. Handles the maximum concurrency allowed by ApacheBench (ab -n 100000 -c 20000) without any failures. Destroys the [C10K problem](http://en.wikipedia.org/wiki/C10k_problem).
 
 Screenshots, benchmarks and code to be released shortly.
 
