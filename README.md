@@ -9,6 +9,8 @@ Currently outperforms Node.js in Windows 7 and competes with IIS 7.5. Handles th
 
 Screenshots, benchmarks and code to be released shortly.
 
+![rapid-server-b](http://files.glassocean.net/github/rapid-server-b.jpg)
+
 Features
 --------
 Current working features include:
