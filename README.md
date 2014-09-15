@@ -60,7 +60,7 @@ ab -n 10000 -c 100:
 | server | 1st run | 2nd run |
 |--------|---------|---------|
 |rapid-server|4784 RPS|4648 RPS|
-|iis 7.5|4784 RPS|4648 RPS|
+|iis 7.5|4763 RPS|4672 RPS|
 |nginx|2819 RPS|2945 RPS|
 |node.js|1185 RPS|1235 RPS|
 |apache|843 RPS|819 RPS|
