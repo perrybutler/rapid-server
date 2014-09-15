@@ -5,7 +5,7 @@ Rapid Server
 
 A very high performance web server utilizing .NET sockets and async I/O comparable to Node.js + Express and IIS 7.5.
 
-Currently outperforms Node.js and nginx in Windows 7; competes with IIS 7.5. Handles the maximum concurrency allowed by ApacheBench (ab -n 100000 -c 20000) without any failures. Destroys the [C10K problem](http://en.wikipedia.org/wiki/C10k_problem).
+Currently outperforms Node.js by 533% and nginx by 58% in Windows 7; competes with IIS 7.5. Handles the maximum concurrency allowed by ApacheBench (ab -n 100000 -c 20000) without any failures. Destroys the [C10K problem](http://en.wikipedia.org/wiki/C10k_problem).
 
 **In this readme:** [Features](#features) - [Quick Start](#quick start) - [Benchmarks](#benchmarks) - [FAQ](#faq) - [Roadmap](#roadmap) - [History](#history)
 
@@ -47,7 +47,7 @@ Or perhaps we want to allow our custom MimeType to be served as a static file wi
 
 Benchmarks
 ----------
-Out of box, Rapid.Http.Type1.Server currently outperforms Node.js by 533% (4180 RPS vs. 660 RPS) in a Windows 7 environment. As I'm still new to using Node.js myself, this is exciting news but nothing to write home about yet. I'll need to make sure Node.js is configured with the recommended web server optimizations before considering this a conclusive result.
+Out of box, Rapid.Http.Type1.Server currently outperforms Node.js in a Windows 7 environment. As I'm still new to using Node.js myself, this is exciting news but nothing to write home about yet. I'll need to make sure Node.js is configured with the recommended web server optimizations before considering this a conclusive result.
 
 The Node.js test environment is setup as follows:
 
