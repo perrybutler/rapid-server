@@ -7,6 +7,8 @@ A very high performance web server utilizing .NET sockets and async I/O comparab
 
 Currently outperforms Node.js and nginx in Windows 7; competes with IIS 7.5. Handles the maximum concurrency allowed by ApacheBench (ab -n 100000 -c 20000) without any failures. Destroys the [C10K problem](http://en.wikipedia.org/wiki/C10k_problem).
 
+In this readme: Features - Quick Start - Benchmarks - FAQ - Roadmap - History
+
 Screenshots, benchmarks and code to be released shortly.
 
 ![rapid-server-b](http://files.glassocean.net/github/rapid-server-b.jpg)
@@ -20,6 +22,7 @@ Current working features include:
 * Decent error handling and low failure rates (zero so far) during high congestion/concurrency.
 * Output caching - frequently used resources are stored and served from an in-memory cache, greatly reducing number of I/O calls.
 * Server is configurable with an XML file, allowing plain-text configuration of mimetypes, default documents, keep-alive (max requests/timeout), custom handlers aka interops (php, etc), compression (gzip/deflate), response headers, virtual hosts, etc.
+* A client app is included for running benchmarks and observing the request/response cycle for any web server. Tested to work with IIS 7.5, Node.js, Apache, nginx and Rapid Server.
 
 Quick Start
 -----------
@@ -86,6 +89,11 @@ ab -n 100000 -c 20000:
 |apache|fail|fail|
 
 Holy crud! Stay tuned...
+
+FAQ
+---
+*Is it production-ready?*
+Not yet, I'm looking for beta testers and feedback. Currently this server has never been used in the wild and the current version contain no security measures whatsoever. When the software hits version 1.0 it should be production-ready.
 
 Roadmap
 -------
