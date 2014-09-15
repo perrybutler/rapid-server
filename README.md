@@ -28,7 +28,7 @@ Quick Start
 -----------
 The following code will create a standard HTTP server that is ready to serve static files from a directory:
 
-    Dim WithEvents server as Rapid.Http.Server("c:\myweb1")
+    Dim WithEvents server as Rapid.Http.Type1.Server("c:\myweb1")
     server.StartServer("127.0.0.1", 9999)
 
 By overriding the HandleRequest event we can build a custom HTTP server:
