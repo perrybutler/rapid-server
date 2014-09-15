@@ -53,15 +53,23 @@ The Node.js test environment is setup as follows:
     app.use(express.static(__dirname + "/../test-static/"));
     var server = app.listen(9888);
 
-I was curious about nginx performance so I got that installed. Then I ran the same benchmarks twice against all of the web servers in my test environment, which are configured to serve up the same "hello world" html page. Here are the results, sorted from best to worst:
+I was curious about nginx performance so I got that installed. Then I ran the same benchmarks twice against all of the web servers in my test environment, which are configured to serve up the same "hello world" html page. Here are the results, sorted from best to worst.
+    
+ab -n 10000 -c 100:
 
-    ab -n 10000 -c 100
-    server - first run - second run
-    rapid server - 4784 RPS - 4648 RPS
-    iis 7.5 - 4763 RPS - 4672 RPS
-    nginx - 2819 RPS - 2945 RPS
-    node.js - 1185 RPS - 1235 RPS
-    apache - 834 RPS - 819 RPS
+| server | 1st run | 2nd run |
+|--------|---------|---------|
+|rapid-server|4784 RPS|4648 RPS|
+|iis 7.5|4784 RPS|4648 RPS|
+|nginx|2819 RPS|2945 RPS|
+|node.js|1185 RPS|1235 RPS|
+|apache|843 RPS|819 RPS|
+
+ab -n 10000 -c 1000:
+
+| server | 1st run | 2nd run |
+|--------|---------|---------|
+|tbd|tbd|tbd|tbd|
 
 Holy crud! Stay tuned...
 
