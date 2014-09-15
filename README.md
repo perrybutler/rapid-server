@@ -44,7 +44,7 @@ Or perhaps we want to allow our custom MimeType to be served as a static file wi
 
 Benchmarks
 ----------
-Out of box, Rapid.Http.Type1.Server currently outperforms Node.js by 533% in a Windows 7 environment. As I'm still new to using Node.js myself, this is exciting news but nothing to write home about yet. I'll need to make sure Node.js is configured with the recommended web server optimizations before considering this a conclusive result.
+Out of box, Rapid.Http.Type1.Server currently outperforms Node.js by 533% (4180 RPS vs. 660 RPS) in a Windows 7 environment. As I'm still new to using Node.js myself, this is exciting news but nothing to write home about yet. I'll need to make sure Node.js is configured with the recommended web server optimizations before considering this a conclusive result.
 
 The Node.js test environment is setup as follows:
 
@@ -53,8 +53,18 @@ The Node.js test environment is setup as follows:
     app.use(express.static(__dirname + "/../test-static/"));
     var server = app.listen(9888);
 
-Stay tuned...
-    
+I was curious about nginx performance so I got that installed. Then I ran the same benchmarks twice against all of the web servers in my test environment, which are configured to serve up the same "hello world" html page. Here are the results:
+
+    **ab -n 10000 -c 100**
+    server - first run - second run
+    nginx - 2819 RPS - 2945 RPS
+    apache - 834 RPS - 819 RPS
+    iis 7.5 - 4763 RPS - 4672 RPS
+    node.js - 1185 RPS - 1235 RPS
+    rapid server - 4784 RPS - 4648 RPS
+
+Holy crud! Stay tuned...
+
 Roadmap
 -------
 Future milestones include:
