@@ -42,6 +42,19 @@ Or perhaps we want to allow our custom MimeType to be served as a static file wi
 
     <MimeType FileExtension="myc" Compress="gzip" Expires="access plus 1 year">x-my-custom-mime-type</MimeType>
 
+Benchmarks
+----------
+Out of box, Rapid.Http.Type1.Server currently outperforms Node.js by 533% in a Windows 7 environment. As I'm still new to using Node.js myself, this is exciting news but nothing to write home about yet. I'll need to make sure Node.js is configured with the recommended web server optimizations before considering this a conclusive result.
+
+The Node.js test environment is setup as follows:
+
+    var express = require("express");
+    var app = express();
+    app.use(express.static(__dirname + "/../test-static/"));
+    var server = app.listen(9888);
+
+Stay tuned...
+    
 Roadmap
 -------
 Future milestones include:
