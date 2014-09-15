@@ -57,7 +57,7 @@ I was curious about nginx performance so I got that installed. Then I ran the sa
     
 ab -n 10000 -c 100:
 
-| server | RPS (1st run) | RPS (2nd run) |
+| Server | RPS (1st run) | RPS (2nd run) |
 |--------|---------------|---------------|
 |rapid-server|4784|4648|
 |iis 7.5|4763|4672|
@@ -67,12 +67,22 @@ ab -n 10000 -c 100:
 
 ab -n 10000 -c 1000:
 
-| server | RPS (1st run) | RPS (2nd run) |
+| Server | RPS (1st run) | RPS (2nd run) |
 |--------|---------------|---------------|
 |iis 7.5|4104|4165|
 |rapid-server|4072|4044|
 |nginx|820|859|
 |node.js|663|645|
+|apache|fail|fail|
+
+ab -n 100000 -c 20000:
+
+| Server | RPS (1st run) | RPS (2nd run) |
+|--------|---------------|---------------|
+|iis 7.5|1334|1321|
+|rapid-server|1322|1281|
+|nginx|1035|1042|
+|node.js|657|649|
 |apache|fail|fail|
 
 Holy crud! Stay tuned...
