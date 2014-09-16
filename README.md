@@ -93,7 +93,21 @@ ab -n 100000 -c 20000:
 |node.js|657|649|
 |apache|fail|fail|
 
+weighttp -n 10000 -c 100:
+
+| Server | RPS (1st run) | RPS (2nd run) |
+|--------|---------------|---------------|
+|iis 7.5|3707|3646|
+|rapid-server|3414|3489|
+|nginx|2977|3013|
+|node.js|1108|1170|
+|apache|874|891|
+
 Holy crud! Stay tuned...
+
+Requirements
+------------
+Microsoft Windows, .NET Framework 3.5+.
 
 FAQ
 ---
