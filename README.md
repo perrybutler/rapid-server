@@ -61,7 +61,7 @@ The Node.js test environment is setup as follows:
     app.use(express.static(__dirname + "/../test-static/"));
     var server = app.listen(9888);
 
-I was curious about nginx performance so I got that installed. Then I ran the same benchmarks twice against all of the web servers in my test environment, which are configured to serve up the same "hello world" html page. Tests were performed using various benchmarking tools with keep-alive on or off for some variety.
+I was curious about nginx performance so I got that installed. Then I ran the same benchmarks twice against all of the web servers in my test environment, which are configured to serve up the same "hello world" html page. Tests were performed using various benchmarking tools with keep-alive on or off for some variety. Tests were performed with typical consumer/commodity hardware - 2.8ghz Quad Core, 4gb RAM, 7200 rpm HDD, Windows 7 SP1.
     
 Test 1 (ab -n 10000 -c 100):
 
