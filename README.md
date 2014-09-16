@@ -127,7 +127,11 @@ Holy crud! Stay tuned...
 
 Requirements
 ------------
-Microsoft Windows, .NET Framework 3.5+.
+Microsoft Windows, .NET Framework
+
+* [Protocol].Type1.Server: .NET 2.0+ (implements EAP / APM / IAsyncResult / Socket.BeginXXX Socket.EndXXX)
+* [Protocol].Type2.Server: .NET 3.5+ (implements EAP / APM / SocketAsyncEventArgs / Shared Buffer)
+* [Protocol].Type3.Server: .NET 4.0+ (implements TPL / Tasks / ContinueWith)
 
 FAQ
 ---
