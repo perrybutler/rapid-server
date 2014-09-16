@@ -63,7 +63,7 @@ The Node.js test environment is setup as follows:
 
 I was curious about nginx performance so I got that installed. Then I ran the same benchmarks twice against all of the web servers in my test environment, which are configured to serve up the same "hello world" html page. Here are the results, sorted from best to worst.
     
-ab -n 10000 -c 100:
+Test 1 (ab -n 10000 -c 100):
 
 | Server | RPS (1st run) | RPS (2nd run) |
 |--------|---------------|---------------|
@@ -73,7 +73,7 @@ ab -n 10000 -c 100:
 |node.js|1185|1235|
 |apache|843|819|
 
-ab -n 10000 -c 1000:
+Test 2 (ab -n 10000 -c 1000):
 
 | Server | RPS (1st run) | RPS (2nd run) |
 |--------|---------------|---------------|
@@ -83,7 +83,7 @@ ab -n 10000 -c 1000:
 |node.js|663|645|
 |apache|fail|fail|
 
-ab -n 100000 -c 20000:
+Test 3 (ab -n 100000 -c 20000):
 
 | Server | RPS (1st run) | RPS (2nd run) |
 |--------|---------------|---------------|
@@ -93,7 +93,17 @@ ab -n 100000 -c 20000:
 |node.js|657|649|
 |apache|fail|fail|
 
-weighttp -n 10000 -c 100:
+Test 4 (ab **-k** -n 10000 -c 100):
+
+| Server | RPS (1st run) | RPS (2nd run) |
+|--------|---------------|---------------|
+|iis 7.5|9148|9024|
+|rapid-server|5125|4738|
+|nginx|2456|2497|
+|node.js|1108|1170|
+|apache|fail|fail|
+
+Test 5 (weighttp -n 10000 -c 100):
 
 | Server | RPS (1st run) | RPS (2nd run) |
 |--------|---------------|---------------|
