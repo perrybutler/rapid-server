@@ -93,7 +93,7 @@ Test 3 (ab -n 100000 -c 20000):
 |node.js|657|649|
 |apache|fail|fail|
 
-Test 4 (ab **-k** -n 10000 -c 100):
+Test 4 (ab **-k** -n 10000 -c 1000):
 
 | Server | RPS (1st run) | RPS (2nd run) |
 |--------|---------------|---------------|
