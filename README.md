@@ -128,7 +128,7 @@ Test 6 (weighttp **-k** -n 1000000 -c 100):
 |rapid-server|7692|7669|
 |nginx|3652|3759|
 |node.js|1694|1648|
-|apache|tbd|tbd|
+|apache|943|923|
 
 Holy crud! Stay tuned...
 
@@ -149,7 +149,7 @@ Not yet, I'm looking for beta testers and feedback. This server has never been u
 Aside from being one of the most robust RAD languages out there, I enjoy coding in VB.NET and that's about all there is to it. The end result is a very "plain English" code base which makes the architecture extremely easy to understand, which should also mean that it's easy to port to your favorite language. Ask yourself this: if VB is so bad then why does the server perform so well? My only gripe about VB.NET happens to be that it's not a cross-platform language. I can read/write many languages, but that's not the point here. Maybe one day I'll port the code to Javascript or Dart, but until then...
 
 *What about G-WAN?*
-I'd like to compare with G-WAN, but they discontinued the Windows version. Their site states that Linux performance was far superior to Windows performance, so the Windows version was dropped, but the actual reasons are unclear. Also, the [tidbit](http://gwan.com/en_windows.html) about IIS using kernel-mode to "cheat" is merely an optimization feature (that is exactly what HTTP.sys does - handle requests in kernel-mode instead of user-mode), and the [claim](http://gwan.com/en_iis.html) about Windows kernel-mode drivers having the ability to crash the whole system is just short of fear mongering as the issue [does not apply](http://www.microsoft.com/technet/prodtechnol/WindowsServer2003/Library/IIS/a2a45c42-38bc-464c-a097-d7a202092a54.mspx) to IIS / HTTP.sys. I strongly suggest they take a different approach to their documentation, benchmarks and site overall.
+I'd like to compare with G-WAN, but they discontinued the Windows version. Their site states that Linux performance was far superior to Windows performance, so the Windows version was dropped, but the actual reasons are unclear. Also, the [tidbit](http://gwan.com/en_windows.html) about IIS using kernel-mode to "cheat" is merely an optimization feature (that is exactly what HTTP.sys does - handle requests in kernel-mode instead of user-mode), and the [claim](http://gwan.com/en_iis.html) about Windows kernel-mode drivers having the ability to crash the whole system is just short of fear mongering as the issue [does not apply](http://www.microsoft.com/technet/prodtechnol/WindowsServer2003/Library/IIS/a2a45c42-38bc-464c-a097-d7a202092a54.mspx) to IIS / HTTP.sys.
 
 Roadmap
 -------
