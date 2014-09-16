@@ -26,6 +26,13 @@ Current working features include:
 
 Quick Start
 -----------
+
+###For End Users
+
+Stay tuned...
+
+###For Developers
+
 The following code will create a standard HTTP server that is ready to serve static files from a directory:
 
     Dim WithEvents server as Rapid.Http.Type1.Server("c:\myweb1")
