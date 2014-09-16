@@ -61,7 +61,7 @@ The Node.js test environment is setup as follows:
     app.use(express.static(__dirname + "/../test-static/"));
     var server = app.listen(9888);
 
-I was curious about nginx performance so I got that installed. Then I ran the same benchmarks twice against all of the web servers in my test environment, which are configured to serve up the same "hello world" html page. Here are the results, sorted from best to worst.
+I was curious about nginx performance so I got that installed. Then I ran the same benchmarks twice against all of the web servers in my test environment, which are configured to serve up the same "hello world" html page. Tests were performed using various benchmarking tools with keep-alive on or off for some variety.
     
 Test 1 (ab -n 10000 -c 100):
 
@@ -113,6 +113,16 @@ Test 5 (weighttp -n 10000 -c 100):
 |node.js|1108|1170|
 |apache|874|891|
 
+Test 6 (weighttp **-k** -n 1000000 -c 100):
+
+| Server | RPS (1st run) | RPS (2nd run) |
+|--------|---------------|---------------|
+|iis 7.5|8290|8105|
+|rapid-server|7692|7669|
+|nginx|3652|3759|
+|node.js|1694|1648|
+|apache|tbd|tbd|
+
 Holy crud! Stay tuned...
 
 Requirements
@@ -122,10 +132,13 @@ Microsoft Windows, .NET Framework 3.5+.
 FAQ
 ---
 *Is it production-ready?*
-Not yet, I'm looking for beta testers and feedback. Currently this server has never been used in the wild and the current version contain no security measures whatsoever. When the software hits version 1.0 it should be production-ready.
+Not yet, I'm looking for beta testers and feedback. This server has never been used in the wild and the current version contains no security measures whatsoever. When the software hits version 1.0 it should be production-ready.
 
-*Why is it coded in VB.NET? Nobody cares about VB.*
+*Why is it coded in VB.NET? Nobody cares about VB or Windows.*
 Aside from being one of the most robust RAD languages out there, I enjoy coding in VB.NET and that's about all there is to it. The end result is a very "plain English" code base which makes the architecture extremely easy to understand, which should also mean that it's easy to port to your favorite language. Ask yourself this: if VB is so bad then why does the server perform so well? My only gripe about VB.NET happens to be that it's not a cross-platform language. I can read/write many languages, but that's not the point here. Maybe one day I'll port the code to Javascript or Dart, but until then...
+
+*What about G-WAN?*
+I'd like to compare with G-WAN, but they discontinued the Windows version. Their site states that Linux performance was far superior to Windows performance, so the Windows version was dropped, but the actual reasons are unclear. Also, the [tidbit](http://gwan.com/en_windows.html) about IIS using kernel-mode to "cheat" is merely an optimization feature (that is exactly what HTTP.sys does - handle requests in kernel-mode instead of user-mode), and the [claim](http://gwan.com/en_iis.html) about Windows kernel-mode drivers having the ability to crash the whole system is just short of fear mongering as the issue [does not apply](http://www.microsoft.com/technet/prodtechnol/WindowsServer2003/Library/IIS/a2a45c42-38bc-464c-a097-d7a202092a54.mspx) to IIS / HTTP.sys. I strongly suggest they take a different approach to their documentation, benchmarks and site overall.
 
 Roadmap
 -------
