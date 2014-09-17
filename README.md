@@ -29,7 +29,9 @@ Quick Start
 
 ###For End Users
 
-Stay tuned...
+1. Download the stable release package and extract RapidServer.exe, RapidServer.dll and http.xml to a directory of your choice (e.g. "C:\RapidServer\").
+2. Run (double-click) the RapidServer.exe file to start the web server listening on port 80 by default.
+3. If you wish to make changes to the server configuration, edit the http.xml file and make sure to restart the server so the config gets reinitialized.
 
 ###For Developers
 
