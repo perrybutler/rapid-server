@@ -147,6 +147,9 @@ FAQ
 *Is it production-ready?*
 Not yet, I'm looking for beta testers and feedback. This server has never been used in the wild and the current version contains no security measures whatsoever. When the software hits version 1.0 it should be production-ready.
 
+*Why not use the TcpClient, TcpListener, HttpWebRequest or HttpWebResponse classes already included in the .NET Framework?*
+While these classes do abstract away a good portion of the code required to build a functional client or server app, I wanted something more flexible and low level along the lines of WinSock2 or Socket.IO so that I would essentially be learning how those work too. Furthermore, to make the TcpClient/TcpListener classes asynchronous, one needs to utilize the underlying Socket class, so why bother with the higher level abstractions? I also wanted to get a more thorough understanding of Sockets and the protocols we use everyday such as TCP, HTTP, etc.
+
 *Why is it coded in VB.NET? Nobody cares about VB or Windows.*
 Aside from being one of the most robust RAD languages out there, I enjoy coding in VB.NET and that's about all there is to it. The end result is a very "plain English" code base which makes the architecture extremely easy to understand, which should also mean that it's easy to port to your favorite language. Ask yourself this: if VB is so bad then why does the server perform so well? My only gripe about VB.NET happens to be that it's not a cross-platform language. I can read/write many languages, but that's not the point here. Maybe one day I'll port the code to Javascript or Dart, but until then...
 
