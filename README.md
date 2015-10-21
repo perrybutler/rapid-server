@@ -5,7 +5,17 @@ Rapid Server
 
 A very high performance web server utilizing .NET sockets and async I/O comparable to Node.js + Express and IIS 7.5.
 
-**Status update:** Rapid Server is tested against real world scenarios during development. It can currently serve up flat-file HTML websites, Jekyll, Grav, WordPress and phpMyAdmin. There are still a few kinks to iron out with PHP, redirects, and other RFC quirks, but for the most part this server is quite capable of hosting websites!
+**Status update:** Rapid Server is tested against real world scenarios during development. There are still a few kinks to iron out with PHP, redirects, and other RFC quirks, but for the most part this server is quite capable of hosting websites! Nothing close to production ready yet, but here's some progess:
+
+* Wordpress: first 3 pages of setup wizard work. Fails after at 4th page (working on it!).
+* Jekyll: works, last time I checked.
+* Flat-File HTML: same as Jykell, it works. Perfectly handles a corporate website that uses a single-page app design (pure ajax), YouTube videos, Mandrill forms, etc.
+* Grav: first page works, haven't tried any further.
+* Drupal: first page works, haven't tried any further.
+* phpMyAdmin: first page works, can't login (working on it!).
+* Pligg: first page works with 2 warnings (working on it!).
+* Piwik: utter failure (working on it!).
+* Joomla: first page fails with 2 warnings (working on it!).
 
 Currently outperforms Node.js by up to 533% and nginx by up to 58% in Windows 7; competes with IIS 7.5. Handles the maximum concurrency allowed by ApacheBench (ab -n 100000 -c 20000) without any failures. Destroys the [C10K problem](http://en.wikipedia.org/wiki/C10k_problem).
 
