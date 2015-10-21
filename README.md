@@ -12,7 +12,7 @@ A very high performance web server utilizing .NET sockets and async I/O comparab
 * Flat-File HTML: same as Jykell, it works. Perfectly handles a corporate website that uses a single-page app design (pure ajax), YouTube videos, Mandrill forms, etc.
 * Grav: first page works, haven't tried any further.
 * Drupal: first page works, haven't tried any further.
-* phpMyAdmin: first page works, can't login (working on it!).
+* phpMyAdmin: first page works, can login with config auth but not cookie auth (working on it!).
 * Pligg: first page works with, haven't tried any further.
 * Piwik: utter failure (working on it!).
 * Joomla: first page works, haven't tried any further.
