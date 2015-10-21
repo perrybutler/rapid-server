@@ -16,6 +16,7 @@ A very high performance web server utilizing .NET sockets and async I/O comparab
 * Pligg: first page works with, haven't tried any further.
 * Piwik: utter failure (working on it!).
 * Joomla: first page works, haven't tried any further.
+* Runs the latest version of PHP, MySQL, and the website platforms listed above. Should support older versions too, haven't tested this yet.
 
 Currently outperforms Node.js by up to 533% and nginx by up to 58% in Windows 7; competes with IIS 7.5. Handles the maximum concurrency allowed by ApacheBench (ab -n 100000 -c 20000) without any failures. Destroys the [C10K problem](http://en.wikipedia.org/wiki/C10k_problem).
 
