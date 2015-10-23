@@ -17,8 +17,9 @@ A very high performance web server utilizing .NET sockets and async I/O comparab
 * Piwik: utter failure (working on it!).
 * Joomla: first page works, haven't tried any further.
 * Runs the latest version of PHP, MySQL, and the website platforms listed above. Should support older versions too, haven't tested this yet.
+* Lightweight? Rapid Server library (dll) is 54 KB compiled; client/server apps (exe) are 48 KB compiled. Both have only 1 dependency - the .NET framework.
 
-Currently the top performer in the Paessler Webserver Stress Tool. Beats out IIS 7.5, Apache, NGINX, LightTPD in ramp tests with max users (4000). This was for static files, and more testing needs to be done.
+Currently top performer in the Paessler Webserver Stress Tool. Beats out IIS 7.5, Apache, NGINX, LightTPD in ramp tests with max users (4000). This was for static files, and more testing needs to be done.
 
 Currently outperforms Node.js by up to 533% and nginx by up to 58% in Windows 7; competes with IIS 7.5. Handles the maximum concurrency allowed by ApacheBench (ab -n 100000 -c 20000) without any failures. Destroys the [C10K problem](http://en.wikipedia.org/wiki/C10k_problem).
 
