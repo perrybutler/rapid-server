@@ -5,6 +5,8 @@ Rapid Server
 
 A very high performance web server utilizing .NET sockets and async I/O comparable to Node.js + Express and IIS 7.5.
 
+**Status update November 11:** Milestone reached. Rapid Server can now handle the automated WordPress setup wizard in its entirety. It can complete all steps and create the database. This took a lot of debugging, I went in circles trying to figure out what's wrong with the CGI handler. Debugging .NET code, CGI code, and PHP code, this finally led me to discover the CGI environment variables were reaching the PHP scripts with lowercase names, even though I was setting them with uppercase names, so WordPress couldn't see a $_REQUEST["SCRIPT_FILENAME"] because it was being sent as $_REQUEST["script_filename"], which caused some paths to be correct and others to be incorrect (confusing). This turned out to be a bug in .NET 3.5 and upgrading the project to .NET 4.0 finally fixed it. It also made Piwik work. Now I need to implement cookie support, because WordPress requires cookies for logging in the user.
+
 **Status update October 21:** Rapid Server is tested against real world scenarios during development. There are still a few kinks to iron out with PHP, redirects, and other RFC quirks, but for the most part this server is quite capable of hosting websites! Nothing close to production ready yet, but here's some progess:
 
 * Wordpress: first 4 pages of setup wizard work, haven't tried any further.
@@ -12,9 +14,9 @@ A very high performance web server utilizing .NET sockets and async I/O comparab
 * Flat-File HTML: same as Jykell, it works. Perfectly handles a corporate website that uses a single-page app design (pure ajax), YouTube videos, Mandrill forms, etc.
 * Grav: first page works, haven't tried any further.
 * Drupal: first page works, haven't tried any further.
-* phpMyAdmin: first page works, can login with config auth but not cookie auth (working on it!).
-* Pligg: first page works with, haven't tried any further.
-* Piwik: utter failure (working on it!).
+* phpMyAdmin: first page works, can login with config auth but not cookie auth (working on it!). Can also browse databases/tables.
+* Pligg: first page works, haven't tried any further.
+* Piwik: first page works.
 * Joomla: first page works, haven't tried any further.
 * Runs the latest version of PHP, MySQL, and the website platforms listed above. Should support older versions too, haven't tested this yet.
 * Lightweight? Rapid Server library (dll) is 54 KB compiled; client/server apps (exe) are 48 KB compiled. Both have only 1 dependency - the .NET framework.
