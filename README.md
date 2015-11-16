@@ -3,27 +3,11 @@ Rapid Server
 
 ![rapid-server](http://files.glassocean.net/github/rapid-server.jpg)
 
+**Status update November 16:** WordPress and phpMyAdmin are working great. No support for chunked file uploads yet, so you can't upload any media to WordPress yet. That's probably the last major hurdle for WordPress. Since Rapid Server does not support .htaccess / url rewriting, Drupal's install wizard fails on the last step (Configure site) when it does a check (and fails with a 404) for pretty urls. Url rewriting has been added to the Roadmap. I'll make a new section in this readme for noting compatibility with various platforms, and I'm going to move the older status updates into their own section at the bottom of this readme.
+
+<hr>
+
 A very high performance web server utilizing .NET sockets and async I/O comparable to Node.js + Express and IIS 7.5.
-
-**Status update November 12:** Cookies have been implemented. WordPress login now works! Had to set an HTTP_COOKIE environment variable to have the cookie passed to the php-cgi.exe process.
-
-**Status update November 11:** Milestone reached. Rapid Server can now handle the automated WordPress setup wizard in its entirety. It can complete all steps and create the database. This took a lot of debugging, I went in circles trying to figure out what's wrong with the CGI handler. Debugging .NET code, CGI code, and PHP code, this finally led me to discover the CGI environment variables were reaching the PHP scripts with lowercase names, even though I was setting them with uppercase names, so WordPress couldn't see a $_SERVER["SCRIPT_FILENAME"] because it was being sent as $_SERVER["script_filename"], which caused some paths to be correct and others to be incorrect (confusing). This turned out to be a bug in .NET 3.5 and upgrading the project to .NET 4.0 finally fixed it. It also made Piwik work. Now I need to implement cookie support, because WordPress requires cookies for logging in the user.
-
-**Status update October 21:** Rapid Server is tested against real world scenarios during development. There are still a few kinks to iron out with PHP, redirects, and other RFC quirks, but for the most part this server is quite capable of hosting websites! Nothing close to production ready yet, but here's some progess:
-
-* Wordpress: setup wizard works to create a site, login works, can make new pages/posts. Nearly 100% functional.
-* Jekyll: generated static sites work, last time I checked.
-* Static HTML: same as Jykell, it works. Perfectly handles a corporate website that uses a single-page app design (pure ajax), YouTube videos, Mandrill forms, etc.
-* Grav: first page works, haven't tried any further.
-* Drupal: first page works, haven't tried any further.
-* phpMyAdmin: first page works, can login with config auth but not cookie auth (working on it!). Can also browse databases/tables.
-* Pligg: first page works, haven't tried any further.
-* Piwik: first page works.
-* Joomla: first page works, haven't tried any further.
-* Runs the latest version of PHP, MySQL, and the website platforms listed above. Should support older versions too, haven't tested this yet.
-* Lightweight? Rapid Server library (dll) is 54 KB compiled; client/server apps (exe) are 48 KB compiled. Both have only 1 dependency - the .NET framework.
-
-Currently top performer in the Paessler Webserver Stress Tool. Beats out IIS 7.5, Apache, NGINX, LightTPD in ramp tests with max users (4000). This was for static files, and more testing needs to be done.
 
 Currently outperforms Node.js by up to 533% and nginx by up to 58% in Windows 7; competes with IIS 7.5. Handles the maximum concurrency allowed by ApacheBench (ab -n 100000 -c 20000) without any failures. Destroys the [C10K problem](http://en.wikipedia.org/wiki/C10k_problem).
 
@@ -180,12 +164,13 @@ Roadmap
 -------
 Future milestones include:
 
+* Implement URL rewriting to support .htaccess directives and be compatible with platforms such as Drupal.
 * Implement more of the official HTTP spec - more headers, mimetypes, etc.
 * Replace IAsyncResult with SocketAsyncEventArgs to prevent high volume object allocations and improve async performance.
 * Implement an HTTP request cache similar to the output cache. This would basically avoid having to parse the request string into an HTTP request object and avoid the need to create the HTTP response object for every request that hits the server, when those requests have already been served before.
 * Virtual hosts and directory/file security.
 * Certificates, signing and encryption (SSL/HTTPS).
-* PHP handler via CGI and FastCGI.
+* PHP handler via FastCGI.
 * Modularize the components, making them optional - build a light-weight server with only the stuff you need.
 * Re-implement the Binary RPC server type. Should work similar to Apache Thrift (Facebook), Protobuf (Google) or Cap'n Proto.
 * Implement new server types - chat server, game server, etc. Also implement their client classes.
@@ -194,6 +179,28 @@ Future milestones include:
 * More benchmarks and challenges. Can it outperform other web servers at most tasks? Can it handle C100K, C1000K?
 * Clustering - use a round-robin/random/intelligent point of access pass-thru system that redirects new clients/requests to low activity worker processes/servers in the cluster that are on different IP addresses.
 * Client clustering - Work around the 64K port limit imposed by the OS and TCP/IP stack, enabling N * 64K concurrency where N is the number of processes/servers in the cluster that are running on separate IP addresses. This should allow testing C∞K, limited only by the distributed hardware available.
+
+Status Updates
+--------------
+**Status update November 12:** Cookies have been implemented. WordPress login now works! Had to set an HTTP_COOKIE environment variable to have the cookie passed to the php-cgi.exe process.
+
+**Status update November 11:** Milestone reached. Rapid Server can now handle the automated WordPress setup wizard in its entirety. It can complete all steps and create the database. This took a lot of debugging, I went in circles trying to figure out what's wrong with the CGI handler. Debugging .NET code, CGI code, and PHP code, this finally led me to discover the CGI environment variables were reaching the PHP scripts with lowercase names, even though I was setting them with uppercase names, so WordPress couldn't see a $_SERVER["SCRIPT_FILENAME"] because it was being sent as $_SERVER["script_filename"], which caused some paths to be correct and others to be incorrect (confusing). This turned out to be a bug in .NET 3.5 and upgrading the project to .NET 4.0 finally fixed it. It also made Piwik work. Now I need to implement cookie support, because WordPress requires cookies for logging in the user.
+
+**Status update October 21:** Rapid Server is tested against real world scenarios during development. There are still a few kinks to iron out with PHP, redirects, and other RFC quirks, but for the most part this server is quite capable of hosting websites! Nothing close to production ready yet, but here's some progess:
+
+* Wordpress: setup wizard works to create a site, login works, can make new pages/posts. Nearly 100% functional.
+* Jekyll: generated static sites work, last time I checked.
+* Static HTML: same as Jykell, it works. Perfectly handles a corporate website that uses a single-page app design (pure ajax), YouTube videos, Mandrill forms, etc.
+* Grav: first page works, haven't tried any further.
+* Drupal: first page works, haven't tried any further.
+* phpMyAdmin: first page works, can login with config auth but not cookie auth (working on it!). Can also browse databases/tables.
+* Pligg: first page works, haven't tried any further.
+* Piwik: first page works.
+* Joomla: first page works, haven't tried any further.
+* Runs the latest version of PHP, MySQL, and the website platforms listed above. Should support older versions too, haven't tested this yet.
+* Lightweight? Rapid Server library (dll) is 54 KB compiled; client/server apps (exe) are 48 KB compiled. Both have only 1 dependency - the .NET framework.
+
+Currently top performer in the Paessler Webserver Stress Tool. Beats out IIS 7.5, Apache, NGINX, LightTPD in ramp tests with max users (4000). This was for static files, and more testing needs to be done.
 
 History
 -------
