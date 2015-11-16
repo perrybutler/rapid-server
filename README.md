@@ -11,7 +11,7 @@ A very high performance web server utilizing .NET sockets and async I/O comparab
 
 Currently outperforms Node.js by up to 533% and nginx by up to 58% in Windows 7; competes with IIS 7.5. Handles the maximum concurrency allowed by ApacheBench (ab -n 100000 -c 20000) without any failures. Destroys the [C10K problem](http://en.wikipedia.org/wiki/C10k_problem).
 
-**In this readme:** [Features](#features) - [Quick Start](#quick-start) - [Benchmarks](#benchmarks) - [FAQ](#faq) - [Roadmap](#roadmap) - [History](#history)
+**In this readme:** [Features](#features) - [Quick Start](#quick-start) - [Benchmarks](#benchmarks)- [Requirements](#requirements) - [FAQ](#faq) - [Roadmap](#roadmap) - [Status Updates](#status-updates) - [History](#history)
 
 Screenshots, benchmarks and code to be released shortly.
 
