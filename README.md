@@ -3,7 +3,9 @@ Rapid Server
 
 ![rapid-server](http://files.glassocean.net/github/rapid-server.jpg)
 
-**Status update November 16:** WordPress and phpMyAdmin are working great. No support for chunked file uploads yet, so you can't upload any media to WordPress yet. That's probably the last major hurdle for WordPress. Since Rapid Server does not support .htaccess / url rewriting, Drupal's install wizard fails on the last step (Configure site) when it does a check (and fails with a 404) for pretty urls. Url rewriting has been added to the Roadmap. I'll make a new section in this readme for noting compatibility with various platforms, and I'm going to move the older status updates into their own section at the bottom of this readme.
+**Status update November 19:** The Benchmark feature is now working in the Rapid Web Client. This is useful for testing the performance of various web servers and their implementations, or comparing two or more servers against each other. Rapid Web Client offers a GUI for ApacheBench and reads the results from it for easy data visualization. In the future this may also include WeighTTP, Siege and gobench support.
+
+![rapid-web-client](http://files.glassocean.net/github/rapid-web-client.png)
 
 <hr>
 
@@ -182,6 +184,8 @@ Future milestones include:
 
 Status Updates
 --------------
+**Status update November 16:** WordPress and phpMyAdmin are working great. No support for chunked file uploads yet, so you can't upload any media to WordPress yet. That's probably the last major hurdle for WordPress. Since Rapid Server does not support .htaccess / url rewriting, Drupal's install wizard fails on the last step (Configure site) when it does a check (and fails with a 404) for pretty urls. Url rewriting has been added to the Roadmap. I'll make a new section in this readme for noting compatibility with various platforms, and I'm going to move the older status updates into their own section at the bottom of this readme.
+
 **Status update November 12:** Cookies have been implemented. WordPress login now works! Had to set an HTTP_COOKIE environment variable to have the cookie passed to the php-cgi.exe process.
 
 **Status update November 11:** Milestone reached. Rapid Server can now handle the automated WordPress setup wizard in its entirety. It can complete all steps and create the database. This took a lot of debugging, I went in circles trying to figure out what's wrong with the CGI handler. Debugging .NET code, CGI code, and PHP code, this finally led me to discover the CGI environment variables were reaching the PHP scripts with lowercase names, even though I was setting them with uppercase names, so WordPress couldn't see a $_SERVER["SCRIPT_FILENAME"] because it was being sent as $_SERVER["script_filename"], which caused some paths to be correct and others to be incorrect (confusing). This turned out to be a bug in .NET 3.5 and upgrading the project to .NET 4.0 finally fixed it. It also made Piwik work. Now I need to implement cookie support, because WordPress requires cookies for logging in the user.
