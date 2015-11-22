@@ -7,6 +7,8 @@
 
 **Addendum:** Forgot to test LightTPD so I did that and it got around 1200 RPS.
 
+More benchmarks to come. I'll also test some denial-of-service tools (LOIC, torshammer, etc) to see how well these servers hold up under pressure from common attack vectors.
+
 <hr>
 
 Rapid Server
