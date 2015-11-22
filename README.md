@@ -5,6 +5,8 @@
 ![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-benchmark1.png)
 ![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-benchmark2.png)
 
+**Addendum:** Forgot to test LightTPD so I did that and it got around 1200 RPS.
+
 <hr>
 
 Rapid Server
