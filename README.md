@@ -3,9 +3,10 @@ Rapid Server
 
 ![rapid-server](http://files.glassocean.net/github/rapid-server.jpg)
 
-**Status update November 19:** The Benchmark feature is now working in the Rapid Web Client. This is useful for testing the performance of various web servers and their implementations, or comparing two or more servers against each other. Rapid Web Client offers a GUI for ApacheBench and reads the results from it for easy data visualization. In the future this may also include WeighTTP, Siege and gobench support.
+**Status update November 22:** Further demonstrating the Benchmark feature in Rapid Web Client. Similar graphs will be used for displaying server performance. Let's have a look at how Rapid Server, Apache, NGINX, IIS and node.js compare using ApacheBench. These servers are event-driven + asynchronous I/O, with the exception of Apache which is synchronous.
 
-![rapid-web-client](http://files.glassocean.net/github/rapid-web-client.png)
+![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-benchmark1.png)
+![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-benchmark2.png)
 
 <hr>
 
@@ -184,6 +185,10 @@ Future milestones include:
 
 Status Updates
 --------------
+**Status update November 19:** The Benchmark feature is now working in the Rapid Web Client. This is useful for testing the performance of various web servers and their implementations, or comparing two or more servers against each other. Rapid Web Client offers a GUI for ApacheBench and reads the results from it for easy data visualization. In the future this may also include WeighTTP, Siege and gobench support.
+
+![rapid-web-client](http://files.glassocean.net/github/rapid-web-client.png)
+
 **Status update November 16:** WordPress and phpMyAdmin are working great. No support for chunked file uploads yet, so you can't upload any media to WordPress yet. That's probably the last major hurdle for WordPress. Since Rapid Server does not support .htaccess / url rewriting, Drupal's install wizard fails on the last step (Configure site) when it does a check (and fails with a 404) for pretty urls. Url rewriting has been added to the Roadmap. I'll make a new section in this readme for noting compatibility with various platforms, and I'm going to move the older status updates into their own section at the bottom of this readme.
 
 **Status update November 12:** Cookies have been implemented. WordPress login now works! Had to set an HTTP_COOKIE environment variable to have the cookie passed to the php-cgi.exe process.
