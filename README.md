@@ -1,6 +1,3 @@
-Rapid Server
-============
-
 ![rapid-server](http://files.glassocean.net/github/rapid-server.jpg)
 
 **Status update November 22:** Further demonstrating the Benchmark feature in Rapid Web Client. Similar graphs will be used for displaying server performance. Let's have a look at how Rapid Server, Apache, NGINX, IIS and node.js compare using ApacheBench. These servers are event-driven + asynchronous I/O, with the exception of Apache which is synchronous.
@@ -9,6 +6,9 @@ Rapid Server
 ![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-benchmark2.png)
 
 <hr>
+
+Rapid Server
+============
 
 A very high performance web server utilizing .NET sockets and async I/O comparable to Node.js + Express and IIS 7.5.
 
