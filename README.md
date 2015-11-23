@@ -1,5 +1,15 @@
 ![rapid-server](http://files.glassocean.net/github/rapid-server.jpg)
 
+**Status update November 23:** Decided to take a CPU profile and see what could be optimized.
+
+![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-profile-file-exists.png)
+
+This shows that one of the slowest operations during our entire handling of a request is when calling IO.File.Exists to check if a file exists on the hard drive. This is done to locate the default document. It's not a slow operation under normal conditions, but calling IO.File.Exists several thousand times per second while serving that many requests consumes more time than the rest of the code, and it adds up. Let's try it without IO.File.Exists:
+
+![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-op-file-exists.PNG)
+
+A noticeable improvement! That's an extra 500 to 2000 requests per second without IO.File.Exists. This brings Rapid Server very close to IIS 7.5 in terms of performance. In reality, we cannot eliminate IO.File.Exists because it is used to locate the default document, but we certainly don't need to do this on every request. The result can be cached, or it can be skipped when we already have a cached response, which is probably how this optimization will be finalized. In case you're wondering what the "S" means in the legend, it's short for static, these benchmarks were done against a static web page.
+
 **Status update November 22:** Further demonstrating the Benchmark feature in Rapid Web Client. Similar graphs will be used for displaying server performance. Let's have a look at how Rapid Server, Apache, NGINX, IIS and node.js compare using ApacheBench. These servers are event-driven + asynchronous I/O, with the exception of Apache which is synchronous.
 
 ![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-benchmark1.png)
