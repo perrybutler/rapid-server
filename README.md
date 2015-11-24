@@ -181,6 +181,10 @@ Roadmap
 -------
 Future milestones include:
 
+* Create a web server manager that allows the admin to spin up instances of Rapid Server, Apache, node.js, NGINX, etc.
+* Create a WAMP-like package.
+* Implement a web-based management page and event log.
+* Implement load balancer and reverse proxy modes. Try speeding up node.js in Windows by placing Rapid Server in front :)
 * Implement URL rewriting to support .htaccess directives and be compatible with platforms such as Drupal.
 * Implement more of the official HTTP spec - more headers, mimetypes, etc.
 * Replace IAsyncResult with SocketAsyncEventArgs to prevent high volume object allocations and improve async performance.
