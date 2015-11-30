@@ -1,23 +1,14 @@
 ![rapid-server](http://files.glassocean.net/github/rapid-server.jpg)
 
-**Status update November 23:** Decided to take a CPU profile and see what could be optimized.
+**Status update November 30:** Rapid Server now incorporates a *fast path optimization* which aims to perform as few tasks and construct as few objects as possible while serving as many requests as possible under the right conditions.
 
-![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-profile-file-exists.png)
+![rapid-web-client](http://files.glassocean.net/github/nov30-rapidserver-fast-path.png)
 
-This shows that one of the slowest operations during our entire handling of a request is when calling IO.File.Exists to check if a file exists on the hard drive. This is done to locate the default document. It's not a slow operation under normal conditions, but calling IO.File.Exists several thousand times per second while serving that many requests consumes more time than the rest of the code, and it adds up. Let's try it without IO.File.Exists:
+By caching both requests and responses in memory, Rapid Server can skip nearly all of the processing for a client, cutting a full request/response cycle down to a few function calls mostly related to socket sends and receives. This is similar to Varnish, but built in. Rapid Server can also be used as a reverse proxy or load balancer similar to NGINX. This has already been tested with Rapid Server in front of a group of servers (Apache, IIS, NGINX, Node.js, LighTPD), forwarding requests to a random server for handling and passing respones back to the client.
 
-![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-op-file-exists.PNG)
+Poorly performing string operations and other slow methods have been eliminated through extensive CPU profiling. Profiling now reveals the majority of time spent happens with RunMessageLoop and IOCP/Threadpool completions. Basically, the bottleneck is now the .NET Framework and Windows kernel. And there's not much we can do about it.
 
-A noticeable improvement! That's an extra 500 to 2000 requests per second without IO.File.Exists. This brings Rapid Server very close to IIS 7.5 in terms of performance. In reality, we cannot eliminate IO.File.Exists because it is used to locate the default document, but we certainly don't need to do this on every request. The result can be cached, or it can be skipped when we already have a cached response, which is probably how this optimization will be finalized. In case you're wondering what the "S" means in the legend, it's short for static, these benchmarks were done against a static web page.
-
-**Status update November 22:** Further demonstrating the Benchmark feature in Rapid Web Client. Similar graphs will be used for displaying server performance. Let's have a look at how Rapid Server, Apache, NGINX, IIS and node.js compare using ApacheBench. These servers are event-driven + asynchronous I/O, with the exception of Apache which is synchronous.
-
-![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-benchmark1.png)
-![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-benchmark2.png)
-
-**Addendum:** Forgot to test LightTPD so I did that and it got around 1200 RPS.
-
-More benchmarks to come. I'll also test some denial-of-service tools (LOIC, torshammer, etc) to see how well these servers hold up under pressure from common attack vectors.
+![rapid-web-client](http://files.glassocean.net/github/nov30-rapidserver-fast-path-profile.png)
 
 <hr>
 
@@ -203,6 +194,25 @@ Future milestones include:
 
 Status Updates
 --------------
+**Status update November 23:** Decided to take a CPU profile with SlimTune and see what could be optimized.
+
+![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-profile-file-exists.png)
+
+This shows that one of the slowest operations during our entire handling of a request is when calling IO.File.Exists to check if a file exists on the hard drive. This is done to locate the default document. It's not a slow operation under normal conditions, but calling IO.File.Exists several thousand times per second while serving that many requests consumes more time than the rest of the code, and it adds up. Let's try it without IO.File.Exists:
+
+![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-op-file-exists.PNG)
+
+A noticeable improvement! That's an extra 500 to 2000 requests per second without IO.File.Exists. This brings Rapid Server very close to IIS 7.5 in terms of performance. In reality, we cannot eliminate IO.File.Exists because it is used to locate the default document, but we certainly don't need to do this on every request. The result can be cached, or it can be skipped when we already have a cached response, which is probably how this optimization will be finalized. In case you're wondering what the "S" means in the legend, it's short for static, these benchmarks were done against a static web page.
+
+**Status update November 22:** Further demonstrating the Benchmark feature in Rapid Web Client. Similar graphs will be used for displaying server performance. Let's have a look at how Rapid Server, Apache, NGINX, IIS and node.js compare using ApacheBench. These servers are event-driven + asynchronous I/O, with the exception of Apache which is synchronous.
+
+![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-benchmark1.png)
+![rapid-web-client](http://files.glassocean.net/github/nov2015-rapidserver-benchmark2.png)
+
+**Addendum:** Forgot to test LightTPD so I did that and it got around 1200 RPS.
+
+More benchmarks to come. I'll also test some denial-of-service tools (LOIC, torshammer, etc) to see how well these servers hold up under pressure from common attack vectors.
+
 **Status update November 19:** The Benchmark feature is now working in the Rapid Web Client. This is useful for testing the performance of various web servers and their implementations, or comparing two or more servers against each other. Rapid Web Client offers a GUI for ApacheBench and reads the results from it for easy data visualization. In the future this may also include WeighTTP, Siege and gobench support.
 
 ![rapid-web-client](http://files.glassocean.net/github/rapid-web-client.png)
