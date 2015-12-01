@@ -4,13 +4,17 @@
 
 ![rapid-web-client](http://files.glassocean.net/github/nov30-rapidserver-fast-path.png)
 
-By caching both requests and responses in memory, Rapid Server can skip nearly all of the processing for a client, cutting a full request/response cycle down to a few function calls mostly related to socket sends and receives. This is similar to Varnish, but built in. Rapid Server can also be used as a reverse proxy or load balancer similar to NGINX. This has already been tested with Rapid Server in front of a group of servers (Apache, IIS, NGINX, Node.js, LighTPD), forwarding requests to a random server for handling and passing respones back to the client.
+By caching both requests and responses in memory, Rapid Server can skip nearly all of the processing for a client, cutting a full request/response cycle down to a few function calls mostly related to socket sends and receives. This is similar to Varnish or memcached, but built in. We're just using a ConcurrentDictionary as the key/value store for the request cache and response cache.
+
+Rapid Server can also be used as a reverse proxy or load balancer similar to NGINX. This has already been tested with Rapid Server sitting in front of a group of servers (Apache, IIS, NGINX, Node.js, LighTPD), forwarding requests to a random server for handling, then passing responses back to the client.
 
 Poorly performing string operations and other slow methods have been eliminated through extensive CPU profiling. Profiling now reveals the majority of time spent happens with RunMessageLoop and IOCP/Threadpool completions. Basically, the bottleneck is now the .NET Framework and Windows kernel. And there's not much we can do about it.
 
 For the following CPU profile I ran ApacheBench against Rapid Server 20 times in a row:
 
 ![rapid-web-client](http://files.glassocean.net/github/nov30-rapidserver-fast-path-profile.png)
+
+Compare this with the previous profile I did on November 23rd.
 
 <hr>
 
