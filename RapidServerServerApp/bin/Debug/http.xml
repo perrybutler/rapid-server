@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+
+<!-- any node with Enabled="False" should be ignored/not loaded/not supported by the server instance -->
+<!-- any node group with only one type of node may include a <Default> node to imply how the server should behave for unhandled cases -->
+
+<Sites>
+	<Site>
+		<Title>Site1</Title>
+		<Path>c:\site1</Path>
+		<Host>127.0.0.1</Host>
+		<Port>30000</Port>
+	</Site>
+</Sites>
+
+<Options>
+	<SendBufferSize>4096</SendBufferSize> <!--  -->
+	<ReceiveBufferSize>4096</ReceiveBufferSize>
+	<KeepAlive Enabled="True">
+		<MaxRequests>10000</MaxRequests> <!-- limits how many requests can be made by the keep-alive connection before that connection is forced closed -->
+		<Timeout>10</Timeout> <!-- limits how long, in seconds, that a keep-alive connection can remain open before that connection is forced closed -->
+	</KeepAlive>
+	<OutputCache Enabled="True">
+		<FileQuota>20</FileQuota> <!-- limits how many files can be in the cache -->
+		<SizeQuota>50</SizeQuota> <!-- limits ram usage (in MB) -->
+	</OutputCache>
+	<Gzip Enabled="True"> <!-- GzipStream is internal to the .NET framework; module does not rely on an external module -->
+		<MinimumFileSize>600</MinimumFileSize> <!-- prevents compressing files smaller than this (in Bytes); compressing files smaller than 150 Bytes can increase their size and compressing many smaller files during a request can tax the cpu. -->
+	</Gzip>
+	<Deflate Enabled="True"> <!-- DeflateStream is internal to the .NET framework; module does not rely on an external module -->
+		<MinimumFileSize>600</MinimumFileSize> <!-- prevents compressing files smaller than this (in Bytes); compressing files smaller than 150 Bytes can increase their size and compressing many smaller files during a request can tax the cpu. -->
+	</Deflate>
+	<DirectoryListing Enabled="True">
+	</DirectoryListing>
+</Options>
+
+<MimeTypes>
+	<Default FileExtension="" Compress="none" Expires="access plus 1 month" Handler="">text/plain</Default>
+	<MimeType FileExtension="js" Compress="gzip" Expires="access plus 1 year">application/javascript</MimeType>
+	<MimeType FileExtension="css" Compress="gzip" Expires="access plus 1 year">text/css</MimeType>
+	<MimeType FileExtension="txt" Compress="gzip" Expires="access plus 1 year">text/plain</MimeType>
+	<MimeType FileExtension="htm,html" Compress="none" Expires="access plus 1 year">text/html</MimeType>
+	<MimeType FileExtension="php" Compress="none" Expires="access plus 1 year" Handler="PhpCgi">text/html</MimeType>
+	<MimeType FileExtension="json" Compress="gzip" Expires="access plus 1 year">application/json</MimeType>
+	<MimeType FileExtension="jpg,jpeg" Compress="none" Expires="access plus 1 year">image/jpeg</MimeType>
+	<MimeType FileExtension="png" Compress="none" Expires="access plus 1 year">image/png</MimeType>
+	<MimeType FileExtension="svg" Compress="none" Expires="access plus 1 year">image/svg+xml</MimeType>
+	<MimeType FileExtension="gif" Compress="none" Expires="access plus 1 year">image/gif</MimeType>
+</MimeTypes>
+
+<Handlers>
+	<Handler Enabled="True">
+		<Name>PhpCgi</Name>
+		<ExecutablePath>c:\php\php-cgi.exe</ExecutablePath>
+	</Handler>
+	<Handler Enabled="True">
+		<Name>PhpFastCgi</Name>
+		<ExecutablePath>c:\php\php-cgi.exe</ExecutablePath>
+	</Handler>
+</Handlers>
+
+<DefaultDocuments>
+	<Document>index.php</Document>
+	<Document>index.htm</Document>
+	<Document>index.html</Document>
+	<Document>default.htm</Document>
+</DefaultDocuments>
+
+<ResponseHeaders Enabled="True">
+	<Header>Server: Rapid-Server</Header>
+	<Header>X-Powered-By: Rapid-Server</Header>
+</ResponseHeaders>
+
+</Settings>

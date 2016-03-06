@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+<Sites>
+	<Site>
+		<Name>Rapid Server S</Name>
+		<Description>rapid-server-static-1</Description>
+		<Url>http://127.0.0.1:30000/test-static/</Url>
+	</Site>
+	<Site>
+		<Name>Rapid Server SLB</Name>
+		<Description>rapid-server-loadbal</Description>
+		<Url>http://127.0.0.1:30001/test-static/</Url>
+	</Site>
+	<Site>
+		<Name>Rapid Server D</Name>
+		<Description>rapid-server-dynamic-1</Description>
+		<Url>http://127.0.0.1:30000/test-dynamic/</Url>
+	</Site>
+	<Site>
+		<Name>IIS S</Name>
+		<Description>iis-static-1</Description>
+		<Url>http://127.0.0.1:31000/test-static/</Url>
+	</Site>
+	<Site>
+		<Name>Apache S</Name>
+		<Description>apache-static-1</Description>
+		<Url>http://127.0.0.1:32000/test-static/</Url>
+	</Site>
+	<Site>
+		<Name>Apache D</Name>
+		<Description>apache-dynamic-1</Description>
+		<Url>http://127.0.0.1:32000/test-dynamic/</Url>
+	</Site>
+	<Site>
+		<Name>NGINX S</Name>
+		<Description>nginx-static-1</Description>
+		<Url>http://127.0.0.1:33000/test-static/</Url>
+	</Site>
+	<Site>
+		<Name>node.js S</Name>
+		<Description>node-js-static-1</Description>
+		<Url>http://127.0.0.1:34000/test-static/</Url>
+	</Site>
+	<Site>
+		<Name>LightTPD S</Name>
+		<Description>lighttpd-static-1</Description>
+		<Url>http://127.0.0.1:35000/test-static/</Url>
+	</Site>
+</Sites>
+<Tools>
+	<Tool>
+		<Name>ApacheBench</Name>
+		<Path>ab </Path>
+		<Speed>-n %num -c %conc -k -g chart.csv %url</Speed>
+		<Time>-t %time -n 10000000 -g chart.csv %url</Time>
+		<Data>
+			<RPS>stdout,between,Requests per second:   , [#/sec]</RPS>
+			<CompletedRequests>stdout,between,Complete requests:    ,vbCrLf</CompletedRequests>
+			<ResponseTime>chart.csv,tabs,2,2+3+4+5</ResponseTime>
+		</Data>
+	</Tool>
+	<Tool>
+		<Name>Siege</Name>
+		<Path>c:\siege-windows\siege.exe </Path>
+		<Speed>-b -c%conc -r1 %url</Speed>
+		<Time>-b -t%timeS %url</Time>
+		<Data>
+			<RPS>siege.log,commas,last,5</RPS>
+			<CompletedRequests>siege.log,commas,last,8</CompletedRequests>
+			<ResponseTime></ResponseTime>
+		</Data>
+	</Tool>
+	<Tool>
+		<Name>WeigHTTP</Name>
+		<Path>c:\WeigHTTP\WeigHTTP.exe </Path>
+		<Speed>-n %num -c %conc %url</Speed>
+		<Time>%url</Time>
+		<Data>
+			<RPS>stdout,between,            , req/s</RPS>
+			<CompletedRequests>stdout,between,            , req/s</CompletedRequests>
+			<ResponseTime></ResponseTime>
+		</Data>
+	</Tool>
+</Tools>
+</Settings>

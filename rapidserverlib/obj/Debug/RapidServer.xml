@@ -1,0 +1,262 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+RapidServer
+</name>
+</assembly>
+<members>
+<member name="T:RapidServer.Http.Module1">
+	<summary>
+ Global variables used throughout the library.
+ TODO: since the server and client apps use their own instance of the library, when the server sets these values,
+ the client does not see them but tries to use them anyway, which breaks the client functionality, move this into
+ the server and create another for the client
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.Site">
+	<summary>
+ A site is simply a website defined in the config file.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.SimpleHttpHeader">
+	<summary>
+ A simple http header is just an object which contains the key and value of the header. Used for cookies, since there might be multiple cookies and we can't add multiple items with the same key to a hashtable.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.SimpleRequestResponse">
+	<summary>
+ A simple object for parsing raw http data into strings, inherited by Request and Response classes
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.Handlers">
+	<summary>
+ Handlers are external processes or API calls that can be automated to do work or return results. Such handlers include PHP, ASP.NET, Windows Shell, etc. Interpreters are made available through custom definitions specified in the interpreters.xml file.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.PhpCgiHandler">
+	<summary>
+ A CGI handler for .php scripts.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.PhpFastCgiHandler">
+	<summary>
+ A FastCGI handler for .php scripts.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.AspDotNetHandler">
+	<summary>
+ An ASP.NET handler. TODO: implement this using ISAPI dll or CGI/FastCGI (see Abyss Web Server)
+ </summary>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Client.Go(System.String,System.Object)">
+	<summary>
+ Issues an HTTP GET request to the URL specified in the textbox.
+ </summary>
+	<param name="url"></param>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Client.DataReceived(System.IAsyncResult)">
+	<summary>
+ This callback fires when the client socket receives data (an HTTP response) asynchronously from the server.
+ </summary>
+ NOTE:
+     Since HTTP is by nature a stream, a response will be sent by the server which is broken down into pieces per the
+     server's configured SendBufferSize, so we must continue issuing BeginReceive's on the socket until the end of the stream. 
+     We can properly detect the end of stream per the HTTP spec which states that the Content-Length header should be used to stop 
+     issuiing BeginReceive's when the total bytes received equals the Header + Content length, or in the case of a 
+     "Transfer-Encoding: chunked" header we look for a null character which signals termination of the chunked stream.
+ <param name="ar"></param>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.Type1.Client">
+	<summary>
+ An HTTP client.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Globals.CompressionMethod">
+	<summary>
+ Types of compression methods.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Globals.TransferMethod">
+	<summary>
+ The transfer method used for sending data to a client.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Globals.MimeType">
+	<summary>
+ Defines an http mimetype.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Globals.KillAll(System.String)">
+	<summary>
+ Kills all running processes matching the procName.
+ </summary>
+	<param name="procName"></param>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Globals.AddressToEndpoint(System.String,System.Int32)">
+	<summary>
+ Converts the given ip address and port into an endpoint that can be used with a socket.
+ </summary>
+	<param name="IP"></param>
+	<param name="Port"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Globals.GetValue(System.Xml.XmlNode)">
+	<summary>
+ Extends the XmlNode class to return an empty string instead of null.
+ </summary>
+	<param name="x"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Globals.Slice(System.String,System.String)">
+	<summary>
+ Extends the String class.
+ </summary>
+	<param name="s"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Globals.SubstringEx(System.String,System.String,System.String)">
+	<summary>
+ Extends the String class.
+ </summary>
+	<param name="s"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Globals.DebugMessageType">
+	<summary>
+ The type of event to be logged. Some events will be enabled/disabled in the LogEvent method, depending on our current debugging goals.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Globals.DebugMessage(System.String,RapidServer.Globals.DebugMessageType,System.String,System.String)">
+	<summary>
+ Logs the event to a console or file. Rather than use Console.WriteLine throughout the library we call LogEvent instead, which can be enabled or disabled in one step. Since Console.WriteLine is useful for debugging but also performance-heavy, we need the ability to enable/disable it at will.
+ </summary>
+	<param name="message"></param>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Globals">
+	<summary>
+ Global enums and helper methods for use anywhere in the library.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.Type1.HandleRequestObject">
+	<summary>
+ An object for passing off the request from an IOCP thread to a threadpool (worker) thread for processing.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Request.ParseRequestString(System.String)">
+	<summary>
+ Parses the raw request string received from the client socket
+ </summary>
+	<param name="requestString"></param>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.Type1.Request">
+	<summary>
+ An http request, usually sent by a client.
+ </summary>
+ Clients will send requests to the server using an http request with the following signature:
+ ---------------------------
+ GET /file.html HTTP/1.1\r\n
+ User-Agent: Chrome/1.0\r\n
+ Host: example.com\r\n
+ Accept: */*
+ ---------------------------
+ The first line in the request is the Request-Line which is mandatory. All subsequent lines are Header-Lines which are optional. Every line must be terminated with \r\n.
+ <remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Response.SetContent(System.Byte[])">
+	<summary>
+ The primary method for setting the response content. Any other methods which also set the content should ultimately route through this method.
+ </summary>
+	<param name="contentBytes"></param>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Response.BuildResponseBytes">
+	<summary>
+ Gets the bytes that represent the final response including the headers and content.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Response.StatusCodeMessage">
+	<summary>
+ Gets a standard message for an http status code.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.Type1.Response">
+	<summary>
+ An http response, normally sent from the server back to the client who made the initial request.
+ </summary>
+	<remarks></remarks>
+</member><member name="P:RapidServer.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:RapidServer.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:RapidServer.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:RapidServer.Http.Type1.Server.#ctor">
+	<summary>
+ Constructs a new HTTP server using the config file.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Server.LoadConfig">
+	<summary>
+ Loads the server config file http.xml from disk and configures the server to operate as defined by the config.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Server.GetContentType(System.String)">
+	<summary>
+ Matches the requested file to a MimeType based on the FileType (extension). MimeTypes are defined in the server config file and include attributes that determine how the server will handle compression and expiration for the resource.
+ </summary>
+	<param name="path"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Server.StartServer">
+	<summary>
+ Starts the server, allowing clients to connect and make requests to one or more of the sites specified in the config.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Server.StopServer">
+	<summary>
+ Stops the server, shutting down each Site.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Server.ClientConnectedAsync(System.IAsyncResult)">
+	<summary>
+ Accepts the client that is attempting to connect, allows another client to connect (whenever that may be), and finally begins receiving data from the client that just connected.
+ </summary>
+	<param name="ar"></param>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Server.RequestReceivedAsync(System.IAsyncResult)">
+	<summary>
+ Accepts the client request, builds the request/response objects and passes them to the event handler where the response 
+ object will be finalized and sent back to the client.
+ </summary>
+	<param name="ar"></param>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Server.HttpServer_HandleRequest(RapidServer.Http.Type1.Request,System.Net.Sockets.Socket)">
+	<summary>
+ Handles the client request, implements the full request/response cycle. This event is triggered by HandleRequestAsync.
+ Can be listened to in a windows form for custom req/res inspection and handling, similar to node.
+ </summary>
+	<param name="req"></param>
+	<param name="client"></param>
+	<remarks></remarks>
+</member><member name="M:RapidServer.Http.Type1.Server.SendResponseAsync(System.IAsyncResult)">
+	<summary>
+ Sends the http response to the client and closes the connection using a separate thread.
+ </summary>
+	<param name="ar"></param>
+	<remarks></remarks>
+</member><member name="T:RapidServer.Http.Type1.Server">
+	<summary>
+ An http server with an async I/O model implemented via IAsyncResult (.NET 2.0+). Utilizes the event-based asynchronous pattern (EAP) and the asynchronous programming model (APM) pattern.
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

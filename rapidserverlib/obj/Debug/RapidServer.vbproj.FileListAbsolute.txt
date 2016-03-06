@@ -1,0 +1,8 @@
+C:\repo\Dropbox\rapid-server\rapidserver\rapidserverlib\bin\Debug\RapidServer.dll
+C:\repo\Dropbox\rapid-server\rapidserver\rapidserverlib\bin\Debug\RapidServer.pdb
+C:\repo\Dropbox\rapid-server\rapidserver\rapidserverlib\bin\Debug\RapidServer.xml
+C:\repo\Dropbox\rapid-server\rapidserver\rapidserverlib\obj\Debug\RapidServer.Resources.resources
+C:\repo\Dropbox\rapid-server\rapidserver\rapidserverlib\obj\Debug\RapidServer.vbproj.GenerateResource.Cache
+C:\repo\Dropbox\rapid-server\rapidserver\rapidserverlib\obj\Debug\RapidServer.dll
+C:\repo\Dropbox\rapid-server\rapidserver\rapidserverlib\obj\Debug\RapidServer.xml
+C:\repo\Dropbox\rapid-server\rapidserver\rapidserverlib\obj\Debug\RapidServer.pdb

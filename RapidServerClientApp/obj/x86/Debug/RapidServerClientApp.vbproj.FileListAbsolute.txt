@@ -1,0 +1,13 @@
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\bin\Debug\RapidServerClientApp.exe
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\bin\Debug\RapidServerClientApp.pdb
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\bin\Debug\RapidServerClientApp.xml
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\obj\x86\Debug\RapidServerClientApp.Resources.resources
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\obj\x86\Debug\RapidServerClientApp.vbproj.GenerateResource.Cache
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\obj\x86\Debug\RapidServerClientApp.exe
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\obj\x86\Debug\RapidServerClientApp.xml
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\obj\x86\Debug\RapidServerClientApp.pdb
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\obj\x86\Debug\RapidServerClientApp.vbprojResolveAssemblyReference.cache
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\obj\x86\Debug\RapidServerClientApp.frmHttpClient.resources
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\bin\Debug\RapidServer.dll
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\bin\Debug\RapidServer.pdb
+C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\bin\Debug\RapidServer.xml
