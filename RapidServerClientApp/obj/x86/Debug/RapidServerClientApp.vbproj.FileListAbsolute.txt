@@ -11,3 +11,6 @@ C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\obj\x86\Debug\Rapi
 C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\bin\Debug\RapidServer.dll
 C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\bin\Debug\RapidServer.pdb
 C:\repo\Dropbox\rapid-server\rapidserver\RapidServerClientApp\bin\Debug\RapidServer.xml
+C:\repo\Dropbox\rapid-server\rapid-server\RapidServerClientApp\obj\x86\Debug\RapidServerClientApp.exe
+C:\repo\Dropbox\rapid-server\rapid-server\RapidServerClientApp\obj\x86\Debug\RapidServerClientApp.xml
+C:\repo\Dropbox\rapid-server\rapid-server\RapidServerClientApp\obj\x86\Debug\RapidServerClientApp.pdb
